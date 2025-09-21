@@ -2,6 +2,14 @@ const express = require('express');
 const Unblocker = require('unblocker');
 const app = express();
 
+// CORS middleware
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // or restrict to your Neocities domain
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 app.use(Unblocker({
   prefix: '/proxy/',
   requestMiddleware: [
